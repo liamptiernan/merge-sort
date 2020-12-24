@@ -1,3 +1,5 @@
+require 'pry'
+
 def merge_sort (array)
     if array.length < 2
         return array
@@ -31,4 +33,32 @@ rand(200).times do
   arr << rand(200)
 end
 
-p merge_sort(arr)
+sorted = merge_sort(arr)
+p sorted
+
+def binary_search(array,target)
+
+    start = 0
+    arr_end = array.length-1
+    midpoint = (arr_end + start)/2
+    binding.pry
+    while true
+        if arr_end-start < 0
+            return false
+            break
+        elsif array[midpoint] == target
+            return midpoint
+            break
+        elsif array[midpoint] > target
+            arr_end = midpoint-1
+            midpoint = (arr_end + start)/2
+        elsif array[midpoint] < target
+            start = midpoint+1
+            midpoint = (arr_end + start)/2
+        end
+    end
+end
+
+sample = arr.sample
+p sample
+p binary_search(sorted,sample)
